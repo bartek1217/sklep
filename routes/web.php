@@ -14,3 +14,5 @@
 Route::get('/', 'ProductsController@index');
 Route::get('basket', 'BasketController@index');
 Route::get('basket/add', 'BasketController@store');
+Route::get('basket/address', 'BasketController@address');
+Route::post('basket/summary', 'BasketController@summary');

@@ -1,8 +1,36 @@
 @extends("header")
 <!-- Begin page content -->
 <main role="main" class="container">
-    <h1 class="mt-5">Koszyk:</h1>
+    <h1 class="mt-5">Podsumowanie:</h1>
     <div class="row">
+        <h2 class="mt-5">Adres wysyłki:</h2>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">Imię</th>
+                    <td>{{ $address['name'] }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nazwisko</th>
+                    <td>{{ $address['surname'] }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ulica</th>
+                    <td>{{ $address['street'] }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Miejscowość</th>
+                    <td>{{ $address['city'] }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Kod pocztowy</th>
+                    <td>{{ $address['zip'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h2 class="mt-5">Produkty:</h2>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -29,7 +57,9 @@
                 </tr>
             </thead>
         </table>
-        <a href="basket/address" class="btn btn-primary">Przejdź do zamówienia</a>
+        <form>
+            <button type="submit" class="btn btn-primary">Zamawiam</button>
+        </form>
     </div>
 </main>
 @extends("footer")

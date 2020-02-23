@@ -33,8 +33,8 @@
                     <li class="nav-item active">
                      </li>
                 </ul>
-                <form class="form-inline mt-2 mt-md-0" action="basket">
-                    <button id="basket_button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Koszyk: <span id="basket_price">{{ Helper::dot2com(cache('basket')['totalPrice']) }}</span> zł</button>
+                <form class="form-inline mt-2 mt-md-0" action="/basket">
+                    <button id="basket_button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Koszyk: <span id="basket_price">{{ Helper::dot2com(cache('basket')['totalPrice'] ?? "0,00")}}</span> zł</button>
                 </form>
             </div>
         </nav>
