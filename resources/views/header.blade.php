@@ -14,6 +14,9 @@
 
     <!-- CSS style -->
     <link href="/css/style.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 
 <body>
@@ -28,11 +31,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Zobacz zamówienia</a>
-                    </li>
+                     </li>
                 </ul>
-                <form class="form-inline mt-2 mt-md-0">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Koszyk: 0,00 zł</button>
+                <form class="form-inline mt-2 mt-md-0" action="basket">
+                    <button id="basket_button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Koszyk: <span id="basket_price">{{ Helper::dot2com(cache('basket')['totalPrice']) }}</span> zł</button>
                 </form>
             </div>
         </nav>

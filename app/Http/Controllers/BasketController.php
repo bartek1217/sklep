@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Products;
+use App\Basket;
 use App\Http\Controllers\Controller;
-use DB;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Cache;
-//use Validator;
+use Illuminate\Support\Facades\Cache;
 
-class ProductsController extends Controller
+class BasketController extends Controller
 {
     /**
-     * Get all products.
+     * Show index.
      */
     public function index()
     {
-        return view('products', ['products' => Products::all()]);
+        return view('basket');
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,8 +36,10 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
+        //Cache::forget('basket');
+        $basket = new Basket(Cache::get('basket'));
+        $basket->add($request->id, $request->product_quantity);
+        return $basket->totalPrice();
     }
 
     /**
