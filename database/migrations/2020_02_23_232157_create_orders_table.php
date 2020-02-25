@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('amount', 5, 2);
+            $table->decimal('amount', 10, 2);
             $table->string('name', 100);
             $table->string('surname', 100);
             $table->string('street', 100);

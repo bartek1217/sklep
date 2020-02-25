@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Basket;
 use App\Order;
 use App\Address;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -27,11 +28,15 @@ class BasketController extends Controller
      */
     public function store(Request $request)
     {
-        //Cache::forget('basket');
         $basket = new Basket(Cache::get('basket'));
-        $basket->add($request->id, $request->product_quantity);
+        $return = $basket->add($request->id, $request->product_quantity);
 
-        return $basket->totalPrice();
+        if ($return) return $basket->totalPrice();
+        else {
+            return response()->json([
+                'success' => 'false'
+            ], 400);
+        }
     }
 
     /**
@@ -64,9 +69,11 @@ class BasketController extends Controller
      */
     public function save()
     {
-        $basket = new Order();
-        $basket->insert();
+        $order = new Order();
+        $order->insert();
+        $order->forgetCache();
 
-        return view('summary');
+        $products = new ProductsController;
+        return $products->index();
     }
 }

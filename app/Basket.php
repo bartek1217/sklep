@@ -29,15 +29,18 @@ class Basket
     public function add($productId, $quantity)
     {
         $product = Products::find($productId);
+
         $this->items['items'][$productId]['name'] = $product->name;
         $this->items['items'][$productId]['quantity'] = $this->items['items'][$productId]['quantity'] ?? 0;
         $this->items['items'][$productId]['quantity'] += $quantity;
+        if ($product->availability < $this->items['items'][$productId]['quantity']) return false;
         $this->items['items'][$productId]['price'] = $product->price;
         $this->items['items'][$productId]['totalPrice'] = $product->price * $this->items['items'][$productId]['quantity'];
         $this->items['totalPrice'] = $this->totalPrice ?? 0;
         $this->totalPrice += $product->price * $quantity;
         $this->items['totalPrice'] = $this->totalPrice;
         Cache::put('basket', $this->items, 28800);
+        return true;
     }
 
     public function totalPrice()

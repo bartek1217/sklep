@@ -40,4 +40,10 @@ class Order
             return array('errors' => array('An unexpected error has occurred. Try again.'));
         }
     }
+
+    public function forgetCache()
+    {
+        Cache::forget('basket_address');
+        Cache::forget('basket');
+    }
 }

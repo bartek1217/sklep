@@ -26,14 +26,12 @@ function add_to_basket(id) {
         dataType: "json",
         data: { id, product_quantity },
         success: function (data) {
-            if (data.errors) {
-                console.log(data);
-            }
-            else {
-                $('#basket_price').text(data);
-                alert('Twój produkt został dodany do koszyka!');
-
-            }
+            $('#basket_price').text(data);
+            alert('Twój produkt został dodany do koszyka!');
+        },
+        error: function (data) {
+            console.log(data);
+            alert('Nie możesz zamówić ilości produktów więksszej niż jest dostępne.');
         }
     });
 }
