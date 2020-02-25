@@ -8,23 +8,23 @@
             <tbody>
                 <tr>
                     <th scope="row">Imię</th>
-                    <td>{{ $address['name'] }}</td>
+                    <td>{{ cache('basket_address')['name'] }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Nazwisko</th>
-                    <td>{{ $address['surname'] }}</td>
+                    <td>{{ cache('basket_address')['surname'] }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Ulica</th>
-                    <td>{{ $address['street'] }}</td>
+                    <td>{{ cache('basket_address')['street'] }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Miejscowość</th>
-                    <td>{{ $address['city'] }}</td>
+                    <td>{{ cache('basket_address')['city'] }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Kod pocztowy</th>
-                    <td>{{ $address['zip'] }}</td>
+                    <td>{{ cache('basket_address')['zip'] }}</td>
                 </tr>
             </tbody>
         </table>
@@ -57,7 +57,8 @@
                 </tr>
             </thead>
         </table>
-        <form>
+        <form action="/basket/save" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <button type="submit" class="btn btn-primary">Zamawiam</button>
         </form>
     </div>

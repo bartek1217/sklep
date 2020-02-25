@@ -22,6 +22,10 @@ class Basket
         }
     }
 
+    /**
+     * Add products to basket.
+     *
+     */
     public function add($productId, $quantity)
     {
         $product = Products::find($productId);

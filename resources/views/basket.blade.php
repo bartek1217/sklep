@@ -13,6 +13,12 @@
                 </tr>
             </thead>
             <tbody>
+
+                @if (cache('basket')['items'] == null)
+                <tr>
+                    <th colspan="4">Brak produktów w koszyku</td>
+                </tr>
+                @else
                 @foreach (cache('basket')['items'] as $product)
                 <tr>
                     <th scope="row">{{ $product['name'] }}</th>
@@ -21,6 +27,7 @@
                     <td>{{ Helper::dot2com($product['totalPrice']) }} zł</td>
                 </tr>
                 @endforeach
+                @endif
             </tbody>
             <thead>
                 <tr>
@@ -29,7 +36,9 @@
                 </tr>
             </thead>
         </table>
+        @if (cache('basket')['items'] !== null)
         <a href="basket/address" class="btn btn-primary">Przejdź do zamówienia</a>
+        @endif
     </div>
 </main>
 @extends("footer")
