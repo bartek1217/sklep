@@ -21,8 +21,6 @@ class CreateOrdersProductsTable extends Migration
             $table->bigInteger('quantity');
             $table->decimal('total_price', 10, 2);
             $table->timestamps();
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
